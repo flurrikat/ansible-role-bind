@@ -105,6 +105,9 @@ zone "{{ bind_zone.name }}" IN {
 {% else %}
   allow-update { none; };
 {% endif %}
+{% if bind_zone.update_policy is defined %}
+  update_policy { {{bind_zone.update_policy|join('; ') }}; };
+{% endif %}
 {% if bind_zone.delegate is defined %}
   forwarders {};
 {% endif %}
